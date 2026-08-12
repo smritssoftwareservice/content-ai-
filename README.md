@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SMRITS Content AI
 
-## Getting Started
+> **Company:** Smrits Software Services  
+> **Tagline:** Turn One Tech Idea Into an Entire Content Package.  
+> **Secondary Tagline:** Ideas. Scripts. Prompts. Avatars. Videos. Images. Publishing. — All in One AI Workspace.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+
+SMRITS Content AI is a full-stack AI content operating system designed specifically for tech creators, YouTubers, Instagram creators, SaaS builders, and gadget reviewers.
+
+With a single prompt, SMRITS Content AI generates viral hooks, 10-second vertical scripts, image prompts, branded graphics, MP4 presenter videos, platform-adapted captions, and calendar events.
+
+---
+
+## Features
+
+- ⚡ **Generate Everything Studio (`/create`):** One keyword creates hooks, scripts, video prompts, SVG graphics, captions, & platform posts simultaneously.
+- 📡 **Tech Trend Radar (`/trends`):** Automated RSS parser scoring stories (0-100) from top AI blogs and developer forums.
+- 🎥 **10s Vertical Video Engine (`/video-studio`):** Local FFmpeg rendering producing 1080x1920 9:16 vertical MP4 reels with animated text overlays.
+- 🎨 **Zero-Cost SVG Image Studio (`/image-studio`):** Template-based vector graphics engine applying creator brand colors & code syntax overlays.
+- 👤 **Avatar Presenter Studio (`/avatar`):** Authorized presenter profile setup with explicit consent verification.
+- 📅 **Content Calendar & Social (`/calendar`, `/social`):** Drag-and-drop event scheduling and simulated/official platform publishing.
+
+---
+
+## Zero-Cost MVP Mode
+
+The application operates seamlessly without any paid third-party API subscriptions:
+```env
+AI_PROVIDER=demo
+IMAGE_PROVIDER=template
+VIDEO_PROVIDER=local
+AVATAR_PROVIDER=local
+VOICE_PROVIDER=browser
+STORAGE_PROVIDER=local
+SOCIAL_PROVIDER=demo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quick Start
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Install Dependencies
+```bash
+cd smrits-content-ai
+npm install
+```
 
-## Learn More
+### 2. Database Sync & Seed
+```bash
+npx prisma db push
+node prisma/seed.js
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Run Server
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Visit `http://localhost:3000`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Production Build & Verification
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To verify production build stability:
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Future Provider Integrations
+
+To plug in real external APIs, update `.env` variables:
+- **OpenAI / Anthropic:** Set `AI_PROVIDER=openai` and add `OPENAI_API_KEY`.
+- **Replicate / SD:** Set `IMAGE_PROVIDER=replicate` and add `REPLICATE_API_KEY`.
+- **Social Networks:** Add official OAuth client IDs for Instagram, YouTube, LinkedIn, X, and TikTok.
+
+---
+
+Designed & Built for **Smrits Software Services**.

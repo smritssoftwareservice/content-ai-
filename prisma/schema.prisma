@@ -1,0 +1,245 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  name          String
+  role          String   @default("user") // "user" | "admin"
+  avatarUrl     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  profile          Profile?
+  brandKit         BrandKit?
+  avatar           Avatar?
+  ideas            Idea[]
+  scripts          Script[]
+  prompts          Prompt[]
+  images           ImageProject[]
+  videos           VideoProject[]
+  contentPackages  ContentPackage[]
+  calendarEvents   CalendarEvent[]
+  socialAccounts   SocialAccount[]
+  generationJobs   GenerationJob[]
+  usage            Usage?
+}
+
+model Profile {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channelName  String
+  bio          String?
+  website      String?
+  youtubeUrl   String?
+  instagramUrl String?
+  linkedinUrl  String?
+  primaryNiche String   @default("AI")
+  defaultStyle String   @default("Energetic")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model BrandKit {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logoUrl        String?
+  primaryColor   String   @default("#6366F1")
+  secondaryColor String   @default("#10B981")
+  fontFamily     String   @default("Inter")
+  ctaText        String   @default("Follow for more tech updates!")
+  username       String   @default("@techcreator")
+  introText      String   @default("Welcome back tech fam!")
+  outroText      String   @default("Subscribe for daily tech tips!")
+  watermarkText  String   @default("SMRITS AI")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Avatar {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name               String   @default("Default Avatar")
+  imageUrl           String
+  voiceSampleUrl     String?
+  hasConsent         Boolean  @default(true)
+  motionStyle        String   @default("subtle-pan")
+  backgroundStyle    String   @default("animated-gradient")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Trend {
+  id          String   @id @default(uuid())
+  title       String
+  url         String   @unique
+  source      String
+  summary     String
+  category    String   @default("AI")
+  trendScore  Int      @default(85)
+  freshness   String   @default("Very High")
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+}
+
+model Idea {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  hook        String
+  format      String   @default("Reel")
+  platform    String   @default("Instagram")
+  niche       String   @default("AI")
+  viralScore  Int      @default(90)
+  status      String   @default("NEW")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Hook {
+  id        String   @id @default(uuid())
+  category  String
+  text      String
+  score     Int      @default(88)
+  createdAt DateTime @default(now())
+}
+
+model Script {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  style       String   @default("Energetic")
+  durationSec Int      @default(10)
+  voiceover   String
+  visuals     String
+  textOverlay String
+  cta         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Prompt {
+  id             String   @id @default(uuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title          String
+  type           String   @default("image") // image | video | avatar
+  subject        String
+  environment    String
+  camera         String
+  lighting       String
+  motion         String
+  style          String
+  aspectRatio    String   @default("9:16")
+  negativePrompt String?
+  fullPromptText String
+  createdAt      DateTime @default(now())
+}
+
+model ImageProject {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  templateType String  @default("Tech News")
+  imageUrl    String
+  aspectRatio String   @default("9:16")
+  createdAt   DateTime @default(now())
+}
+
+model VideoProject {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  videoUrl     String
+  durationSec  Int      @default(10)
+  aspectRatio  String   @default("9:16")
+  renderStatus String   @default("COMPLETED")
+  createdAt    DateTime @default(now())
+}
+
+model ContentPackage {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic           String
+  hooksJson       String   // JSON string of selected hooks
+  scriptsJson     String   // JSON string of scripts
+  promptsJson     String   // JSON string of prompts
+  imagesJson      String   // JSON string of image URLs
+  videoUrl        String?
+  captionsJson    String   // JSON string of captions per platform
+  hashtags        String
+  youtubeTitle    String?
+  youtubeDesc     String?
+  linkedinPost    String?
+  xPost           String?
+  status          String   @default("DRAFT") // DRAFT | READY | SCHEDULED | PUBLISHED
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  calendarEvents  CalendarEvent[]
+}
+
+model CalendarEvent {
+  id               String          @id @default(uuid())
+  userId           String
+  user             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentPackageId String?
+  contentPackage   ContentPackage? @relation(fields: [contentPackageId], references: [id], onDelete: SetNull)
+  title            String
+  platform         String          // Instagram | YouTube | LinkedIn | X | TikTok
+  scheduledAt      DateTime
+  status           String          @default("SCHEDULED") // DRAFT | READY | SCHEDULED | PUBLISHED | FAILED
+  publishedUrl     String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+}
+
+model SocialAccount {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platform     String   // Instagram | YouTube | LinkedIn | X | TikTok
+  accountName  String
+  isConnected  Boolean  @default(false)
+  isDemo       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model GenerationJob {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // "generate-everything" | "render-video" | "generate-images"
+  status    String   @default("QUEUED") // QUEUED | PROCESSING | COMPLETED | FAILED
+  progress  Int      @default(0)
+  result    String?  // JSON response or artifact path
+  error     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Usage {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ideasCount   Int      @default(0)
+  scriptsCount Int      @default(0)
+  imagesCount  Int      @default(0)
+  videosCount  Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}
