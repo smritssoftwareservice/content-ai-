@@ -2,131 +2,129 @@
 
 @layer base {
   :root {
-    --background: #141210;
-    --foreground: #f8fafc;
+    --background: #f8fafc;
+    --foreground: #0f172a;
   }
 
   body {
-    /* Apple Vision OS Spatial Glassmorphism - Warm Atmospheric Background Image via Unsplash HQ tech lounge */
-    background-color: #12100e;
+    /* Minimalist Apple Light Mode Theme - Crisp Clean Background with Subtle Ambient Warmth */
+    background-color: #f8fafc;
     background-image: 
-      linear-gradient(to bottom, rgba(18, 16, 14, 0.72), rgba(18, 16, 14, 0.85)),
-      url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+      radial-gradient(at 0% 0%, rgba(224, 231, 255, 0.45) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(243, 232, 255, 0.45) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(209, 250, 229, 0.35) 0px, transparent 50%);
     background-attachment: fixed;
-    color: #f8fafc;
+    color: #0f172a;
     min-height: 100vh;
-    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', Roboto, sans-serif;
+    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
   }
 }
 
-/* Apple Vision OS Frosted Translucent Glass Panels */
+/* Minimalist Apple Light Mode Glassmorphism Utilities */
 .glass-panel {
-  background: rgba(28, 24, 22, 0.65);
-  backdrop-filter: blur(32px) saturate(190%);
-  -webkit-backdrop-filter: blur(32px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  border-radius: 1.75rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 12px rgba(15, 23, 42, 0.03);
+  border-radius: 1.5rem;
 }
 
-/* Frosted Inner Floating Card */
+/* Crisp Light Cards */
 .glass-card {
-  background: rgba(42, 36, 33, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
   border-radius: 1.25rem;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(55, 48, 44, 0.78);
-  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(99, 102, 241, 0.35);
   transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.12);
 }
 
-/* Glass Inputs */
+/* Clean Light Inputs */
 .glass-input {
-  background: rgba(20, 17, 15, 0.75);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  color: #0f172a;
   border-radius: 0.875rem;
   transition: all 0.2s ease;
 }
 
 .glass-input:focus {
   outline: none;
-  border-color: #f59e0b;
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
-  background: rgba(20, 17, 15, 0.92);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  background: #ffffff;
 }
 
-/* Warm Orange/Amber Vision OS Primary Pill Buttons */
+/* Crisp Indigo Primary Buttons */
 .glass-button-primary {
-  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  border-radius: 0.875rem;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
   transition: all 0.25s ease;
 }
 
 .glass-button-primary:hover {
-  background: linear-gradient(135deg, #d97706 0%, #c2410c 100%);
-  box-shadow: 0 8px 28px rgba(234, 88, 12, 0.55);
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
   transform: translateY(-1px);
 }
 
-/* Frosted Secondary Pill Buttons */
+/* Crisp Secondary Light Buttons */
 .glass-button-secondary {
-  background: rgba(255, 255, 255, 0.09);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #f1f5f9;
-  border-radius: 1rem;
+  background: rgba(241, 245, 249, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  color: #334155;
+  border-radius: 0.875rem;
   transition: all 0.2s ease;
 }
 
 .glass-button-secondary:hover {
-  background: rgba(255, 255, 255, 0.20);
-  border-color: rgba(255, 255, 255, 0.32);
-  color: #ffffff;
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.9);
+  color: #0f172a;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ef4444 100%);
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-emerald {
-  background: linear-gradient(135deg, #34d399 0%, #fbbf24 100%);
+  background: linear-gradient(135deg, #059669 0%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Custom Scrollbar */
+/* Custom Light Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(20, 16, 14, 0.6);
+  background: rgba(241, 245, 249, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(148, 163, 184, 0.4);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.6);
+  background: rgba(99, 102, 241, 0.6);
 }
